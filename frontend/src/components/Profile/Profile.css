@@ -1,0 +1,263 @@
+.profile-container {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: calc(100vh - 80px);
+}
+
+.profile-header {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-name {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.profile-email {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.profile-type {
+  color: #3498db;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.profile-joined {
+  color: #95a5a6;
+  font-size: 0.95rem;
+}
+
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #3498db;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  color: #7f8c8d;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.9rem;
+}
+
+.profile-sections {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+.profile-section {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+}
+
+.ratings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.rating-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  transition: background-color 0.3s ease;
+}
+
+.rating-item:hover {
+  background: #e9ecef;
+}
+
+.rating-info {
+  flex: 1;
+}
+
+.rating-title {
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0.25rem;
+}
+
+.rating-type {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.rating-score {
+  text-align: right;
+}
+
+.stars {
+  display: flex;
+  gap: 0.1rem;
+  margin-bottom: 0.25rem;
+  justify-content: flex-end;
+}
+
+.star {
+  color: #ddd;
+  font-size: 1rem;
+}
+
+.star.filled {
+  color: #f39c12;
+}
+
+.rating-date {
+  color: #95a5a6;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.quick-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.action-btn {
+  width: 100%;
+  text-align: left;
+  justify-content: flex-start;
+}
+
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 20px 15px;
+  }
+  
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .profile-name {
+    font-size: 2rem;
+  }
+  
+  .profile-stats {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+  
+  .stat-card {
+    padding: 1.5rem;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+  }
+  
+  .profile-sections {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .rating-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .rating-score {
+    text-align: left;
+    width: 100%;
+  }
+  
+  .stars {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-header {
+    padding: 1.5rem;
+  }
+  
+  .profile-name {
+    font-size: 1.8rem;
+  }
+  
+  .profile-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .stat-number {
+    font-size: 1.8rem;
+  }
+}

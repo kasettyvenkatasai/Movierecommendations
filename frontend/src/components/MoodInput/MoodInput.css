@@ -1,0 +1,143 @@
+.mood-input-container {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.mood-card {
+  background: white;
+  border-radius: 20px;
+  padding: 3rem;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.mood-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.mood-subtitle {
+  color: #7f8c8d;
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+}
+
+.mood-form {
+  width: 100%;
+}
+
+.moods-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.mood-option {
+  background: #f8f9fa;
+  border: 3px solid transparent;
+  border-radius: 16px;
+  padding: 2rem 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.mood-option:hover {
+  background: #e9ecef;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.mood-option.selected {
+  border-color: #3498db;
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  color: white;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(52, 152, 219, 0.3);
+}
+
+.mood-emoji {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.mood-label {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.mood-description {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  line-height: 1.4;
+}
+
+.mood-option.selected .mood-description {
+  opacity: 0.9;
+}
+
+.mood-btn {
+  font-size: 1.2rem;
+  padding: 15px 40px;
+  border-radius: 30px;
+  min-width: 280px;
+  background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+  border: none;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.mood-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #d35400 0%, #c0392b 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(230, 126, 34, 0.3);
+}
+
+.mood-btn:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .mood-card {
+    padding: 2rem;
+    margin: 20px;
+  }
+  
+  .mood-title {
+    font-size: 2rem;
+  }
+  
+  .mood-subtitle {
+    font-size: 1rem;
+  }
+  
+  .moods-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .mood-option {
+    padding: 1.5rem 1rem;
+  }
+  
+  .mood-btn {
+    min-width: auto;
+    width: 100%;
+    font-size: 1rem;
+  }
+}

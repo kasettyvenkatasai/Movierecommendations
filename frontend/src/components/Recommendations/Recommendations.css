@@ -1,0 +1,153 @@
+.recommendations-container {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: calc(100vh - 80px);
+}
+
+.recommendations-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.recommendations-subtitle {
+  color: #7f8c8d;
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.recommendations-section {
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.recommendations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.no-recommendations {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 2rem auto;
+}
+
+.no-recommendations h2 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.no-recommendations p {
+  color: #7f8c8d;
+  margin-bottom: 2rem;
+}
+
+.trailer-modal {
+  text-align: center;
+}
+
+.trailer-modal h3 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  margin-bottom: 1.5rem;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.book-modal-content {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.book-modal-cover {
+  width: 150px;
+  height: 225px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+.book-modal-info {
+  flex: 1;
+}
+
+.book-modal-info h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.book-preview {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #ecf0f1;
+}
+
+.book-preview h4 {
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.modal-description {
+  color: #7f8c8d;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .recommendations-container {
+    padding: 20px 15px;
+  }
+  
+  .recommendations-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .book-modal-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .book-modal-cover {
+    align-self: center;
+  }
+  
+  .video-container {
+    padding-bottom: 50%;
+  }
+}
