@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
 import './Cards.css';
-
+import axios from 'axios';
+import { useRecommendation } from '../../context/RecommendationContext';
 const MovieCard = ({ movie, onWatchNow, onAddToWatchlist }) => {
   const [isAdded, setIsAdded] = useState(false);
-
-  const handleAddToWatchlist = () => {
-    onAddToWatchlist(movie);
+  const {user} = useRecommendation()  
+  const handleAddToWatchlist =  async () => {
+  try {
+    const response = await axios.post("http://localhost:5000/addtowatchlist", {
+      useremail: user.email,  
+      movieId: movie._id, 
+    });
+    console.log(response.data.message);
+    onAddToWatchlist(movie); 
     setIsAdded(true);
     setTimeout(() => setIsAdded(false), 2000);
-  };
+  } catch (err) {
+    console.error("Error adding to watchlist:", err);
+  }
+};
 
   return (
     <div className="card">

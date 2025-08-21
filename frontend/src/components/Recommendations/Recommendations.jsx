@@ -4,12 +4,12 @@ import MovieCard from './MovieCard';
 import BookCard from './Bookcard';
 import Modal from '../common/Modal';
 import './Recommendations.css';
-
 const Recommendations = () => {
-  const { currentMood, recommendations, addToWatchlist, addToReadingList } = useRecommendation();
+  const { currentMood, recommendations, addToWatchlist, addToReadingList,topMovies,mode } = useRecommendation();
   const [activeModal, setActiveModal] = useState(null);
   const [modalContent, setModalContent] = useState(null);
-
+  console.log(mode)
+  console.log(topMovies)
   const openTrailerModal = (movie) => {
     setModalContent({
       type: 'trailer',
@@ -37,21 +37,57 @@ const Recommendations = () => {
   };
 
   if (!currentMood || (!recommendations.movies.length && !recommendations.books.length)) {
-    return (
-      <div className="recommendations-container">
-        <div className="no-recommendations">
-          <h2>No Recommendations Yet</h2>
-          <p>Please select your mood first to get personalized recommendations.</p>
-          <button 
-            onClick={() => window.location.href = '/mood'} 
-            className="btn btn-primary"
-          >
-            Choose My Mood
-          </button>
-        </div>
+  const fallbackMovies = mode === 'cold-start-top' ? topMovies : recommendations.suggested;
+
+  return (
+    <div className="recommendations-container">
+      <div className="no-recommendations">
+        <h2>No Recommendations Yet</h2>
+        <p>Please select your mood first to get personalized recommendations.</p>
+        <button 
+          onClick={() => window.location.href = '/mood'} 
+          className="btn btn-primary"
+        >
+          Choose My Mood
+        </button>
       </div>
-    );
-  }
+
+      {fallbackMovies && fallbackMovies.length > 0 && (
+        <div className="fallback-recommendations">
+          <h2 className="section-title">
+            🎬 {mode === 'cold-start-top' ? 'Top Movies' : 'Recommended for You'}
+          </h2>
+          <div className="recommendations-grid">
+            {fallbackMovies.map((movie) => (
+              <MovieCard
+                key={movie.id}
+                movie={movie}
+                onWatchNow={() => openTrailerModal(movie)}
+                onAddToWatchlist={() => addToWatchlist(movie)}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+      {activeModal === 'trailer' && modalContent && (
+        <Modal onClose={closeModal}>
+          <div className="trailer-modal">
+            <h3>{modalContent.title}</h3>
+            <div className="video-container">
+              <iframe
+                src={modalContent.trailer}
+                title={`${modalContent.title} trailer`}
+                frameBorder="0"
+                allowFullScreen
+              ></iframe>
+            </div>
+            <p className="modal-description">{modalContent.description}</p>
+          </div>
+        </Modal>
+      )}
+    </div>
+  );
+}
 
   return (
     <div className="recommendations-container">

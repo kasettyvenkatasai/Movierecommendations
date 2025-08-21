@@ -12,7 +12,7 @@ const Login = () => {
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   
-  const { setUser } = useRecommendation();
+  const { user,setUser } = useRecommendation();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -73,6 +73,7 @@ const Login = () => {
     const userData = response.data.user;
     console.log(userData);
     setUser(userData);
+    console.log(user);
     setIsLoading(false);
     navigate("/");
   } catch (error) {
