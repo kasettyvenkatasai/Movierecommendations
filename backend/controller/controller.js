@@ -2,7 +2,9 @@ const mongoose  = require('mongoose');
 const User = require('../Models/User');   
 const bcrypt = require('bcryptjs');
 const Admin = require('../Models/Admin');
+const Movie = require('../Models/Movie')
 const jwt  = require('jsonwebtoken');
+const movie = require('../Models/Movie');
 const secret = 'venkatasai';
 async function createSignup(req,res) {
   try {
@@ -98,4 +100,77 @@ async function logout(req,res) {
   });
   res.status(200).json({ message: 'Logged out successfully' });
 }
-module.exports = { createSignup, createlogin ,logout};
+const getRecommendations = async (req, res) => {
+  try {
+    console.log("hello");
+    const { email, limit = 12 } = req.query;
+
+    let mode = 'cold-start-top';
+    let movies = [];
+
+    // If user exists, get their mode
+    if (email) {
+      const user = await User.findOne({ email });
+      if (user) {
+        mode = user.mode;
+
+        if (mode === 'personalized') {
+          // Example: fetch top-rated movies by the user’s preferences
+          const ratedMovieIds = user.ratedMovies.map(r => r.movieId);
+          movies = await Movie.find({ _id: { $nin: ratedMovieIds } }) // exclude already rated
+            .sort({ popularity: -1 }) // simple personalized approach, you can replace with real recommendation logic
+            .limit(limit);
+        }
+      }
+    }
+
+    // Cold-start: popular movies
+    if (mode === 'cold-start-top' || movies.length === 0) {
+      movies = await Movie.find().sort({ popularity: -1 }).limit(limit);
+    } 
+    console.log(movies)
+
+    res.json({ mode, movies });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+async function addtowatchlist(req, res) {
+  try {
+    const { useremail, movieId } = req.body;
+    console.log(useremail)
+    if (!useremail || !movieId) {
+      return res.status(400).json({ message: "useremail and movieId are required" });
+    }
+
+    // Find user
+    const user = await User.findOne({ email: useremail });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+   console.log(user);
+   
+    const exists = user.watchlist.some(
+      (entry) => entry.movie.toString() === movieId
+    );
+    if (exists) {
+      return res.status(400).json({ message: "Movie already in watchlist" });
+    }
+
+   
+    user.watchlist.push({ movie: movieId });
+    await user.save();
+     console.log("saved");
+    return res.status(200).json({
+      message: "Movie added to watchlist",
+      watchlist: user.watchlist,
+    });
+
+  } catch (error) {
+    console.error("Error adding to watchlist:", error);
+    return res.status(500).json({ message: "Server error", error: error.message });
+  }
+}
+
+module.exports = { createSignup, createlogin ,logout,getRecommendations,addtowatchlist};
