@@ -10,7 +10,7 @@ const movieSchema = new mongoose.Schema({
   vote_average: Number,
   vote_count: Number,
   popularity: Number,
-  genre_ids: [Number],
+  genres: [String],
   original_language: String,
 });
 const movie = mongoose.model('Movie' , movieSchema);
